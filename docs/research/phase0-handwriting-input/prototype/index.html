@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>KodoPace 手書き解答プロトタイプ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2563eb">
+</head>
+<body>
+  <header id="toolbar">
+    <button id="undoBtn" type="button">元に戻す</button>
+    <button id="clearBtn" type="button">クリア</button>
+    <label>太さ
+      <input id="widthRange" type="range" min="1" max="20" value="4">
+    </label>
+    <label>
+      <input id="pressureToggle" type="checkbox" checked>
+      筆圧に応じて太さを変える
+    </label>
+    <label>
+      <input id="allowTouchToggle" type="checkbox">
+      指での入力も許可(パームリジェクションOFF)
+    </label>
+    <button id="saveBtn" type="button">PNG保存</button>
+  </header>
+  <main>
+    <canvas id="board"></canvas>
+  </main>
+  <footer id="debug">
+    <span id="debugInfo">pointerType: - / pressure: - / points/s: - / coalesced対応: -</span>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
