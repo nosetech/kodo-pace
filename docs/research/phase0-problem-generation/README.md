@@ -21,13 +21,16 @@ KodoPace の中核機能である「学習指導要領に基づいた実力測�
 ## 検証結果
 
 ### 1. 学年別サンプル問題セットの生成
-- 算数: [3年生(わり算)](./samples/sansu/grade3_sample.md) / [5年生(分数・割合)](./samples/sansu/grade5_sample.md)
-- 国語: [3年生(漢字・文法)](./samples/kokugo/grade3_sample.md) / [5年生(敬語・読解)](./samples/kokugo/grade5_sample.md)
+- 算数: [1年生(たし算・ひき算)](./samples/sansu/grade1_sample.md) / [2年生(筆算・かけ算)](./samples/sansu/grade2_sample.md) / [3年生(わり算)](./samples/sansu/grade3_sample.md) / [5年生(分数・割合)](./samples/sansu/grade5_sample.md)
+- 国語: [1年生(ひらがな・かたかな・読解)](./samples/kokugo/grade1_sample.md) / [2年生(漢字・句読点・読解)](./samples/kokugo/grade2_sample.md) / [3年生(漢字・文法)](./samples/kokugo/grade3_sample.md) / [5年生(敬語・読解)](./samples/kokugo/grade5_sample.md)
 
 いずれも、学年別の到達目標・数値範囲・漢字配当表を指定するプロンプトのみで、
 学年を超える概念(未習の解法・漢字・文法用語)を使わない問題セットを生成できた。
-3年生と5年生の間で数値の抽象度・思考ステップ数に明確な差が生まれており、
+1〜5年生の間で数値の抽象度・思考ステップ数・使用可能な漢字に明確な差が生まれており、
 **学年に応じた難易度調整はプロンプト内の条件指定だけで機能する**ことを確認した。
+特に低学年(1・2年生)では「漢字を使わない/学年配当漢字に限定する」という制約を
+プロンプトで明示しないと、モデルが未習の漢字を混ぜてしまうケースが見られ、
+制約の明示が低学年ほど重要になることが分かった。
 
 **受け入れ条件との対応: 満たした。**
 
