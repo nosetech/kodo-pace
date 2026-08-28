@@ -69,6 +69,10 @@
     const rect = canvas.parentElement.getBoundingClientRect();
     ctx.clearRect(0, 0, rect.width, rect.height);
     for (const stroke of strokes) {
+      if (stroke.length === 1) {
+        drawSegment(stroke[0], stroke[0]);
+        continue;
+      }
       for (let i = 1; i < stroke.length; i++) {
         drawSegment(stroke[i - 1], stroke[i]);
       }
@@ -127,6 +131,8 @@
     canvas.setPointerCapture(e.pointerId);
     const point = pointFromEvent(e);
     currentStroke = { pointerId: e.pointerId, points: [point] };
+    // 移動を伴わないタップ(句読点や「。」の点など)でも見える点を残す
+    drawSegment(point, point);
     updateDebug(e);
   });
 
@@ -134,9 +140,7 @@
 
   function endStroke(e) {
     if (!currentStroke || e.pointerId !== currentStroke.pointerId) return;
-    if (currentStroke.points.length > 1) {
-      strokes.push(currentStroke.points);
-    }
+    strokes.push(currentStroke.points);
     currentStroke = null;
     if (e.pointerId === activePenPointerId) {
       activePenPointerId = null;
