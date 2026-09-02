@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>音声入力(口頭解答)検証プロトタイプ</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>音声入力(口頭解答)検証プロトタイプ</h1>
+
+  <section id="env-check">
+    <h2>1. 実行環境チェック</h2>
+    <ul id="env-list"></ul>
+  </section>
+
+  <section id="recognition">
+    <h2>2. 音声認識テスト</h2>
+    <div class="controls">
+      <label>
+        認識言語:
+        <select id="lang-select">
+          <option value="ja-JP" selected>日本語 (ja-JP)</option>
+          <option value="en-US">English (en-US)</option>
+        </select>
+      </label>
+      <button id="toggle-btn" type="button">録音開始</button>
+      <span id="status" class="status">待機中</span>
+    </div>
+
+    <div class="transcript-box">
+      <p><strong>確定結果:</strong></p>
+      <p id="final-transcript" class="final"></p>
+      <p><strong>認識中(未確定):</strong></p>
+      <p id="interim-transcript" class="interim"></p>
+    </div>
+
+    <table id="history-table">
+      <thead>
+        <tr><th>時刻</th><th>認識結果</th><th>信頼度(confidence)</th></tr>
+      </thead>
+      <tbody id="history-body"></tbody>
+    </table>
+  </section>
+
+  <section id="grading-demo">
+    <h2>3. 採点方式検証デモ(簡易版)</h2>
+    <p class="note">
+      短答式(一意な正解がある設問)を想定した簡易採点デモ。
+      認識結果を正規化した上で模範解答と比較する。
+      記述式・自由回答の採点方式については <a href="../README.md#3-採点方式内容の正誤判定の検討">README の検討内容</a> を参照。
+    </p>
+    <div class="controls">
+      <label>
+        模範解答:
+        <input type="text" id="expected-answer" placeholder="例: 42">
+      </label>
+      <button id="grade-btn" type="button">直近の認識結果で採点</button>
+    </div>
+    <p id="grade-result"></p>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
